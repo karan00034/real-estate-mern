@@ -60,13 +60,21 @@ export default function Home() {
           <br />
           We have a wide range of properties for you to choose from.
         </div>
-        <Link
-          to={'/search'}
-           className="text-xs sm:text-sm font-bold bg-gray-800 text-white py-2 px-4 rounded hover:bg-gray-700 hover:underline"
-
-        >
-          Let's get started...
-        </Link>
+       
+        <div className="flex gap-4">
+          <Link
+            to={'/search'}
+            className="text-xs sm:text-sm font-bold bg-slate-700 text-white py-2 px-4 rounded hover:bg-gray-700 hover:underline flex items-center justify-center w-48 h-12 hover:opacity-95"
+          >
+            Let's get started...
+          </Link>
+          <Link
+            to={'/create-listing'} // Adjust the link destination as needed
+            className="text-xs sm:text-sm font-bold bg-slate-700 text-white py-2 px-4 rounded hover:bg-gray-700 hover:underline flex items-center justify-center w-48 h-12 hover:opacity-95"
+          >
+            Create Listing
+          </Link>
+        </div>      
       </div>
 
       {/* swiper */}
