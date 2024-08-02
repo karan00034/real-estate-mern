@@ -38,7 +38,7 @@ export default function SignIn() {
       const text = await res.text(); // Read the response as text first
       console.log('Raw response:', text); // Log the text to inspect its content
 
-      if (data.success === false) {
+      if (data.success == false) {
         dispatch(signInFailure(data.message));
         return;
       }
