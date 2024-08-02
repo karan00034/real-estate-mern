@@ -34,7 +34,7 @@ export default function SignIn() {
         body: JSON.stringify(formData),
       });
       const data = await res.json();
-      console.log(data);
+      console.log("Json data : ",data);
       const text = await res.text(); // Read the response as text first
       console.log('Raw response:', text); // Log the text to inspect its content
 
