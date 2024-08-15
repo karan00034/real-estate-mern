@@ -12,8 +12,10 @@ export default function Home() {
   const [offerListings, setOfferListings] = useState([]);
   const [saleListings, setSaleListings] = useState([]);
   const [rentListings, setRentListings] = useState([]);
+  const [loading, setLoading] = useState(true); // Start with loading set to true
+
   SwiperCore.use([Navigation]);
-  console.log(offerListings);
+
   useEffect(() => {
     const fetchOfferListings = async () => {
       try {
@@ -25,6 +27,7 @@ export default function Home() {
         console.log(error);
       }
     };
+
     const fetchRentListings = async () => {
       try {
         const res = await fetch(`${BASE_URL}/api/listing/get?type=rent&limit=4`);
@@ -41,12 +44,20 @@ export default function Home() {
         const res = await fetch(`${BASE_URL}/api/listing/get?type=sale&limit=4`);
         const data = await res.json();
         setSaleListings(data);
+        setLoading(false); // Stop loading once all data is fetched
       } catch (error) {
-        log(error);
+        console.log(error);
+        setLoading(false); // Stop loading in case of an error
       }
     };
+
     fetchOfferListings();
   }, []);
+
+  if (loading) {
+    return <div className='text-center py-10'>Loading...</div>; // Replace with your loader component or animation
+  }
+
   return (
     <div>
       {/* top */}
@@ -81,24 +92,21 @@ export default function Home() {
 
       {/* swiper */}
       <Swiper navigation>
-        {offerListings &&
-          offerListings.length > 0 &&
+        {offerListings && offerListings.length > 0 &&
           offerListings.map((listing) => (
-            <SwiperSlide>
+            <SwiperSlide key={listing._id}>
               <div
                 style={{
                   background: `url(${listing.imageUrls[0]}) center no-repeat`,
                   backgroundSize: 'cover',
                 }}
                 className='h-[500px]'
-                key={listing._id}
               ></div>
             </SwiperSlide>
           ))}
       </Swiper>
 
       {/* listing results for offer, sale and rent */}
-
       <div className='max-w-6xl mx-auto p-3 flex flex-col gap-8 my-10'>
         {offerListings && offerListings.length > 0 && (
           <div className=''>
