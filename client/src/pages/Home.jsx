@@ -57,7 +57,7 @@ export default function Home() {
   if (loading) {
     return (<div className='flex items-center justify-center min-h-screen'>
       <div className='text-center'>
-        <img src='/load.png' alt='Loading...' className='mx-auto mb-4' />
+        <img src='/load.png' alt='Loading...' className='mx-auto mb-4 animate-spin' />
         <p className='text-xl font-semibold'>Loading...</p>
       </div>
     </div>)
