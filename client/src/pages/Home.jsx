@@ -55,7 +55,12 @@ export default function Home() {
   }, []);
 
   if (loading) {
-    return <div className='text-center py-10'>Loading...</div>; // Replace with your loader component or animation
+    return (<div className='flex items-center justify-center min-h-screen'>
+      <div className='text-center'>
+        <img src='/load.png' alt='Loading...' className='mx-auto mb-4' />
+        <p className='text-xl font-semibold'>Loading...</p>
+      </div>
+    </div>)
   }
 
   return (
